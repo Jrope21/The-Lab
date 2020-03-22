@@ -1,7 +1,5 @@
 const path = require('path');
 
-// process.env.NODE_ENV = 'development';
-
 module.exports = {
     // tell webpack this is for nodeJS not browser
     target: 'node',
