@@ -6,10 +6,22 @@ import Home from '../src/routes/Home';
 
 const app = express();
 
+app.use(express.static('client-build'))
+
 app.get('/', (req, res) => {
     const content = ReactDOMServer.renderToString(<Home />);
 
-    res.send(content);
+    const html = `
+        <html>
+            <head></head>
+            <body>
+                <div id="root">${content}</div>
+                <script src="bundle.js"></script>
+            </body>
+        </html>
+    `;
+
+    res.send(html);
 })
 
 app.listen(3000, () => {
