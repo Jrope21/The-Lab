@@ -1,0 +1,43 @@
+body {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .primary {
+    z-index: 1
+  }
+  
+  .triangle, .inner-triangle {
+    position: absolute;
+    border-bottom: 80px solid black;
+    border-right: 45px solid transparent;
+    border-left: 45px solid transparent;
+    border-top: 45px solid transparent;
+  }
+  
+  .inner-triangle {
+    top: 0;
+    left: -40px;
+  }
+  
+  @for $i from 2 through 5 {
+    $position: calc(-#{$i}px * #{$i + 2} + 5%);
+    
+    .triangle:nth-child(#{$i}) {
+      transform: translateY($position);
+      border-bottom: darken(purple, 10% + $i * 1.5) 80px solid;
+
+        .inner-triangle {
+            top: #{-44 + $i}px;
+            left: #{-44 + $i - 1}px;
+            border-bottom: #{80 - $i}px solid white; 
+            border-right: #{(45 - $i)}px solid transparent;
+            border-left: #{(45 - $i)}px solid transparent;
+            border-top: #{(45 - $i)}px solid transparent;
+        }
+    }
+  }

@@ -2,7 +2,7 @@
 // import { Route } from 'react-router';
 
 import Home from './home/home.route';
-import UserList, {loadData} from './user-list/user-list.route';
+import UserList, { loadData } from './user-list/user-list.route';
 
 const PageRoutes = [
     {

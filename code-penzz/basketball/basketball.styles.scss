@@ -1,0 +1,101 @@
+$dribble_bezier: cubic-bezier(.92, .25, .45, .8);
+
+.flex-center {
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.basketball {
+  width: 75px;
+  height: 75px;
+  border: 1px solid black;
+  background: #CF5300;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  // transition: .7s ease;
+  animation: .75s $dribble_bezier 0s infinite dribble;
+  
+  // middle horizontal line that wraps around bball  
+  &::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 130%;
+    left: 35%;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+  }
+  
+  // left most line
+  &::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -80%;
+    left: -180%;
+    border-radius: 100%;
+    border: 1px solid black;
+  }
+  
+}
+
+span.lines {
+//   middle vertical line
+  &::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: 35%;
+    border-radius: 100%;
+    border: 1px solid black;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 125%;
+    top: -20%;
+    left: 55%;
+    border-radius: 100%;
+    border: 1px solid black;
+  }
+  
+}
+
+// TODO -- adjust glare to be more accurate / not use "blur"
+span.glare {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: blur(30px);
+  background: orange;
+  left: -50%;
+  border-radius: 30%;
+  z-index: 1;
+  // left
+}
+
+
+// TODO -- need to expand on keyframe
+@keyframes dribble {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(80px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
