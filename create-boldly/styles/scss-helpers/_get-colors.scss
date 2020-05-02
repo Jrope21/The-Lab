@@ -1,0 +1,8 @@
+@function color($template, $color) { // example: colors('consulting_ehs', primary)
+    @if map-has-key($colors, $template) {
+        @return get-deep-map($colors, $template, $color)
+    }
+
+    @warn "Unknown `#{$key}` in $grid-breakpoints.";
+    @return null;
+}
