@@ -1,5 +1,5 @@
 @function breakpoint($key) {
-    @if map-has-key($grid-breakpoints, $key) { // example: breakpoint(sm)
+    @if map-has-key($grid_breakpoints, $key) { // example: breakpoint(sm)
         @return map-get($grid-breakpoints, $key);
     }
 
