@@ -1,0 +1,8 @@
+@function getContainerValue($breakpoint, $value) { // example: colors('consulting_ehs', primary)
+    @if map-has-key($container_values, $breakpoint) {
+        @return get-deep-map($container_values, $breakpoint, $value)
+    }
+
+    @warn "Unknown `#{$key}` in $grid-breakpoints.";
+    @return null;
+}

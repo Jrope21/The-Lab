@@ -1,36 +1,57 @@
-@mixin container ($xs: true, $sm: true, $md: true, $lg: true) { 
+@import '../_config.scss';
+
+@mixin paddingLR ($px) {
+    padding-left: $px;
+    padding-right: $px;
+}
+
+@mixin marginCenter {
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+@mixin setupContainerBreakpoint($breakpoint) {
+    @include paddingLR(getContainerValue($breakpoint, 'padding'));
+    @include marginCenter();
+
+    @if (getContainerValue($breakpoint, max_width)) {
+        max-width: getContainerValue($breakpoint, max_width);
+    }
+}
+
+@mixin container ($xs: true, $sm: true, $md: true, $lg: true, $xl: true) { 
 
     @if ($xs) {
         @media (max-width: breakpoint(sm)) {
-            padding-left: px-to-rem(19px);
-            padding-right: px-to-rem(19px);
-            @include marginCenter;
+            @include setupContainerBreakpoint('xs');
         }  
     }
 
     @if ($sm) {
         @media (min-width: breakpoint(sm)) and (max-width: breakpoint(md)) {
-            padding-right: px-to-rem(24px);
-            padding-left: px-to-rem(24px);
-            @include marginCenter;
+            @include setupContainerBreakpoint('sm');
         }
     } 
 
     @if ($md) {
         @media (min-width: breakpoint(md)) and (max-width: breakpoint(lg)) {
-            padding-right: px-to-rem(63px);
-            padding-left: px-to-rem(63px);
-            @include marginCenter;
+            @include setupContainerBreakpoint('md');
         }
     }
 
     @if ($lg) {
-        @media (min-width: breakpoint(lg)) {
-            padding-right: px-to-rem(109px);
-            padding-left: px-to-rem(109px);
-            max-width: calc(#{$container_max} + 218px);
-            @include marginCenter;
+        @media (min-width: breakpoint(lg)) and (max-width: breakpoint(xl)) {
+            @include setupContainerBreakpoint('lg');
+        }
+    }
+
+    @if ($lg) {
+        @media (min-width: breakpoint(xl)) {
+            @include setupContainerBreakpoint('xl');
         }
     }
 }
 
+.container {
+    @include container();
+}
